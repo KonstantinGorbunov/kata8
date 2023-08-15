@@ -1,6 +1,7 @@
 package web.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class User {
@@ -53,5 +54,18 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(sureName, user.sureName) && Objects.equals(address, user.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, sureName, address);
     }
 }
